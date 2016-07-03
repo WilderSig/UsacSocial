@@ -1,0 +1,165 @@
+{% extends 'administrador/administrador.html' %}
+
+{% block title %}
+
+Discusion de Tema
+<h1>
+
+        <small> {{usuario.first_name}}</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="../privado"><i class="fa fa-dashboard"></i> Inicio</a></li>
+          <li><a href="../gene_temas">Temas</a></li>
+      </ol>
+{% endblock title %}
+
+{% block content %}
+
+
+
+          <!-- /.box -->
+        </div>
+                {% if temas %}
+                {% for tema in temas %}
+        <h2>{{tema.titulo}}</h2>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Tema de Discusion</a></li>
+
+            </ul>
+            <div class="tab-content">
+
+
+
+
+                 <!-- Post -->
+                <div class="post clearfix">
+                  <div class="user-block">
+                     <img class="img-circle img-bordered-sm" src={{MEDIA_ROOT}}{{tema.usuario_id__foto}} alt="User Image">
+                        <span class="username">
+                          <a href="#">{{tema.usuario_id__first_name}}</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description">Fecha de Publicacion: {{tema.fecha_creacion}}</span>
+                      <span class="description">Email: {{tema.usuario_id__email}}</span>
+                  </div>
+                  <!-- /.user-block -->
+
+                  <p>
+
+                    {{ tema.descripcion }}
+                      <div class="col-sm-10">
+                      <div class="row">
+                        <div class="col-sm-10">
+                          <img class="img-responsive" src={{MEDIA_ROOT}}{{tema.imagen}} alt="Photo">
+
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+
+                  </p>
+
+                      {% endfor %}
+                {% endif %}
+
+
+                <!-- /.post -->
+        <!-- /.col -->
+            </div>
+                <div class="col-sm-12">
+                            <h3 class="box-title">Respuestas</h3>
+                </div>
+                {% if respuestas %}
+                {% for respuesta in respuestas %}
+                <div class="post clearfix">
+                    <div class="user-block">
+                    <img src="{{MEDIA_ROOT}}{{respuesta.usuario_id__foto}}" class="user-image" alt="User Image">
+                        <span class="username">
+
+                          <a href="#">{{respuesta.usuario_id__first_name}} </a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description">Correo: {{respuesta.usuario_id__email}}</span>
+                  </div>
+                    <p>{{respuesta.descripcion}}
+                    <div class="col-sm-8">
+                    {% if respuesta.imagen %}
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <img class="img-responsive" src={{MEDIA_ROOT}}{{respuesta.imagen}} alt="Photo">
+
+                        </div>
+
+                        <!-- /.col -->
+                        <!-- /.col -->
+                      </div>
+
+                     {% endif %}
+                      <!-- /.row -->
+                    </div>
+                </p>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <div class="post clearfix">
+                  <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+                    <div class="form-group margin-bottom-none" method="POST" enctype="multipart/form-data">
+                        {%csrf_token %}
+                        <div class="col-sm-12">
+                            <h3 class="box-title">Respuesta:</h3>
+                        </div>
+
+
+                        {% if temas %}
+                        {% for tema in temas %}
+                        {% if tema.estado == 1 %}
+                        <div class="col-sm-12">
+                        <textarea rows="5" cols="80" style="font-size: 14px" id="id_descripcion" name="descripcion" placeholder="Escriba su Respuesta" class="form-control input-sm"></textarea>
+                      </div>
+
+                      <div class="col-sm-12">
+                        <input id="id_imagen"  name="imagen" class="form-control input-sm" type="file" >
+                      </div>
+                      <div class="col-sm-3">
+                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm" >Responder</button>
+                      </div>
+                    </div>
+
+                        {% else %}
+                            <div class="col-sm-12">
+                        <textarea rows="5" cols="80" style="font-size: 17px" name="descripcion" placeholder="Las repuestas estan desactivadas para este tema porque ha sido solucionado anteriormente" class="form-control input-sm" disabled></textarea>
+                      </div>
+
+                      <div class="col-sm-12">
+                        <input   name="imagen" class="form-control input-sm" type="file" disabled>
+                      </div>
+                      <div class="col-sm-3">
+                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm" disabled>Responder</button>
+                      </div>
+                    </div>
+
+
+                        {% endif%}
+                        {% endfor %}
+                        {% endif %}
+
+
+
+
+                  </form>
+                    </div>
+      <!-- /.row -->
+
+
+
+{% endblock content %}
+
+{% block js %}
+<
+{% endblock %}

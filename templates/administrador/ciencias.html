@@ -1,0 +1,107 @@
+{% extends 'administrador/administrador.html' %}
+
+{% block title %}
+Ciencias
+<h1>
+
+        <small> {{usuario.first_name}}</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="../profile"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li  href="../ciencias" class="active">Ciencias</li>
+      </ol>
+{% endblock title %}
+
+{% block content %}
+
+
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Ciencias</a></li>
+
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                  <div class="row">
+                     <div class="col-xs-12">
+                  <div class="box">
+                      <a href="/addciencia" class="btn btn-primary"><b>Crear Ciencias</b></a>
+            <div class="box-header">
+              <h3 class="box-title">Ciencias Existentes</h3>
+            </div>
+                      {% if message %}
+      <div class='alert alert-info'>
+        {{ message }}
+      </div>
+    {% endif %}
+            <!-- /.box-header -->
+
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Accion</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if ciencias %}
+                {% for ciencia in ciencias %}
+                <tr>
+                    <td>{{ciencia.nombre}}</td>
+                    <td>{{ ciencia.descripcion}}</td>
+                    <td><a title="Editar" class="fa fa-fw fa-pencil-square-o" href="/edit_cie/{{ciencia.id}}"></a>
+                      <a title="Eliminar" class="fa fa-fw fa-remove" href="/delete_cie/{{ciencia.id}}"></a></td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay ciencias registrados</td></tr>
+                {% endfor %}
+                {% endif %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Accion</th>
+                </tr>
+
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+      <!-- /.row -->
+                  </div>
+              <!-- /.tab-pane -->
+
+              <!-- /.tab-pane -->
+ <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+
+{% endblock content %}
+
+{% block js %}
+<
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'administrador/administrador.html' %}
+
+{% block title %}
+Carreras
+<h1>
+
+        <small> {{usuario.first_name}}</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="../profile"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li  href="../carreras" class="active">Carrera</li>
+      </ol>
+{% endblock title %}
+
+{% block content %}
+
+
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Carreras</a></li>
+
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                  <div class="row">
+                     <div class="col-xs-12">
+                  <div class="box">
+                      <a href="/addcarrera" class="btn btn-primary"><b>Crear Carrera</b></a>
+            <div class="box-header">
+              <h3 class="box-title">Carreras Existentes</h3>
+            </div>
+                      {% if message %}
+      <div class='alert alert-info'>
+        {{ message }}
+      </div>
+    {% endif %}
+            <!-- /.box-header -->
+
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Carrera</th>
+                  <th>Descripcion</th>
+                    <th>Facultad</th>
+                  <th>Accion</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if carre %}
+                {% for carrera in carre%}
+                <tr>
+                    <td>{{carrera.nombre}}</td>
+                    <td>{{carrera.descripcion}}</td>
+                    <td>{{carrera.facultad_id__nombre}}</td>
+                    <td><a title="Editar" class="fa fa-fw fa-pencil-square-o" href="/edit_car/{{carrera.id}}"></a>
+                      <a title="Eliminar" class="fa fa-fw fa-remove" href="/delete_car/{{carrera.id}}"></a></td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay carreras registradas</td></tr>
+                {% endfor %}
+                {% endif %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Carrera</th>
+                  <th>Descripcion</th>
+                    <th>Facultad</th>
+                  <th>Accion</th>
+                </tr>
+
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+      <!-- /.row -->
+                  </div>
+              <!-- /.tab-pane -->
+
+              <!-- /.tab-pane -->
+
+              <div class="tab-pane" id="settings">
+                <form class="form-horizontal" method="POST">
+                    {%csrf_token %}
+                   {{formulario.as_p}}
+
+                  <div>
+                  <input type="submit" class="btn btn-success" value="Guardar" />
+                  </div>
+
+                </form>
+
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+
+{% endblock content %}
+
+{% block js %}
+<
+{% endblock %}

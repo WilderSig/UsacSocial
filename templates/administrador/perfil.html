@@ -1,0 +1,127 @@
+{% extends 'administrador/administrador.html' %}
+
+{% block title %}
+Mi Perfil
+<h1>
+
+        <small> {{usuario.first_name}}</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="../profile"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li  href="../profile" class="active">Perfil</li>
+      </ol>
+{% endblock title %}
+
+{% block content %}
+
+
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Mis Temas</a></li>
+
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                  <div class="row">
+                     <div class="col-xs-12">
+                  <div class="box">
+
+            <div class="box-header">
+              <h3 class="box-title">Mis Temas</h3>
+            </div>
+            <!-- /.box-header -->
+            <a href="/addtema" class="btn btn-primary"><b>Crear Tema</b></a>
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Titulo</th>
+                  <th>Fecha Creacion</th>
+                  <th>No. Respuestas</th>
+                    <th>Estado</th>
+                  <th>Autor</th>
+                  <th>Accion</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if temas %}
+                {% for tema in temas %}
+                <tr>
+                    <td>
+                        <span class="username">
+                            <a href="">{{tema.titulo}}</a>
+                        </span>
+                    </td>
+                    <td>{{ tema.fecha_creacion}}</td>
+                    <td>{{ tema.no_respuestas}}</td>
+                    {% if tema.estado == 1 %}
+                    <td>Activo</td>
+                    {% else %}
+                    <td><b>SOLUCIONADO</b></td>
+                    {% endif %}
+                    <td>{{ tema.usuario_id__first_name}}</td>
+                    <td><a href="/edit_tema/{{tema.id}}"><span title="Editar" class="fa fa-fw fa-pencil-square-o"></span></a>
+                      <a  href="/borrar_tema/{{tema.id}}"><span title="Eliminar" class="fa fa-fw fa-remove"></span></a>
+                        <a href="/sol_tema/{{tema.id}}" ><span title="Clausurar" class="fa fa-fw  fa-exclamation"></span></a>
+                        <a href="/asig_ciencia/{{tema.id}}" ><span title="Asignar Ciencia" class="fa fa-fw  fa-book"></span></a>
+                        <a href="/re_tema/{{tema.id}}" ><span title="Reactivar" class="fa fa-fw  fa-check"></span></a>
+                        <a href="/asignacion_tema/{{tema.id}}" ><span title="Invitar Usuario" class="fa fa-fw  fa-users"></span></a>
+                        <a href="/tema_facu/{{tema.id}}" ><span title="Asignar Facultad" class="fa fa-fw  fa-bank" ></span></a>
+                    <a href="/asig_carrera/{{tema.id}}" ><span title="Asignar Carrera" class="fa fa-fw  fa-graduation-cap"  ></span></a>
+
+                    </td>
+
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay temas registrados</td></tr>
+                {% endfor %}
+                {% endif %}
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Titulo</th>
+                  <th>Fecha Creacion</th>
+                  <th>No. Respuestas</th>
+                    <th>Estado</th>
+                  <th>Autor</th>
+                  <th>Accion</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+      <!-- /.row -->
+                  </div>
+              <!-- /.tab-pane -->
+
+              <!-- /.tab-pane -->
+
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+
+{% endblock content %}
+
+{% block js %}
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'administrador/administrador.html' %}
+
+{% block title %}
+Cursos Catedratico
+<h1>
+
+        <small> {{usuario.first_name}}</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="../profile"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li  href="../cursos" class="active">Cursos Catedratico</li>
+      </ol>
+{% endblock title %}
+
+{% block content %}
+
+
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Cursos Catedratico</a></li>
+
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                  <div class="row">
+                     <div class="col-xs-12">
+                  <div class="box">
+                      <a href="/asig_cat" class="btn btn-primary"><b>Asignarme Curso</b></a>
+            <div class="box-header">
+              <h3 class="box-title">Cursos Asignados</h3>
+            </div>
+                      {% if message %}
+      <div class='alert alert-info'>
+        {{ message }}
+      </div>
+    {% endif %}
+            <!-- /.box-header -->
+
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Accion</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if cursos %}
+                {% for curso in cursos %}
+                <tr>
+                    <td>{{curso.curso_id__nombre}}</td>
+                    <td>{{ curso.curso_id__descripcion}}</td>
+                    <td><a title="Eliminar" class="fa fa-fw fa-remove" href="/el_curso/{{curso.id}}"></a></td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay cursos registrados</td></tr>
+                {% endfor %}
+                {% endif %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Accion</th>
+                </tr>
+
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+      <!-- /.row -->
+                  </div>
+              <!-- /.tab-pane -->
+
+              <!-- /.tab-pane -->
+ <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+
+{% endblock content %}
+
+{% block js %}
+<
+{% endblock %}

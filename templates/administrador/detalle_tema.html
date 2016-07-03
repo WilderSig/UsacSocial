@@ -1,0 +1,207 @@
+{% extends 'administrador/administrador.html' %}
+
+{% block title %}
+Detalle Tema
+<h1>
+
+        <small> {{usuario.first_name}}</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="../profile"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li  href="../ciencias" class="active">Detalle Tema</li>
+      </ol>
+{% endblock title %}
+
+{% block content %}
+
+
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Detalle Tema</a></li>
+
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                  <div class="row">
+                     <div class="col-xs-12">
+                  <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Tema Titulo:</h3>
+            </div>
+
+                      <div class="box-header">
+              <h3 class="box-title"> {{tema.titulo}}</h3>
+            </div>
+                      {% if message %}
+      <div class='alert alert-info'>
+        {{ message }}
+      </div>
+    {% endif %}
+            <!-- /.box-header -->
+            <div class ="col-md-6">
+            <div class="box-body">
+               <table class="table table-bordered">
+                   <thead>
+                <tr>
+                  <th>Ciencia Nombre</th>
+                    {%if usuario.is_staff%}
+                    <th>Desasignar</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% if ciencias %}
+                {% for ciencia in ciencias %}
+                <tr>
+                    <td>{{ciencia.ciencia_id__nombre}}</td>
+                    {%if usuario.is_staff%}
+                    <td><a title="Eliminar" class="fa fa-fw fa-remove" href="/el_ciencia/{{ciencia.id}}"></a>
+                    {% endif %}
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay ciencias registrados</td></tr>
+                {% endfor %}
+                {% endif %}
+
+                </tbody>
+
+              </table>
+                </div>
+                </div>
+                      <div class ="col-md-6">
+            <div class="box-body">
+                <!-- TABLA DE FACULTADES ---->
+                <table class="table table-bordered">
+                   <thead>
+                <tr>
+                  <th>Facultad Nombre</th>
+                    {%if usuario.is_staff%}
+                    <th>Desasignar</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% if facultades %}
+                {% for facultad in facultades %}
+                <tr>
+                    <td>{{facultad.facultad_id__nombre}}</td>
+                    <td><a title="Eliminar" class="fa fa-fw fa-remove" href="/el_facultad/{{facultad.id}}"></a>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay facultades registrados</td></tr>
+                {% endfor %}
+                {% endif %}
+
+                </tbody>
+
+              </table>
+
+
+            </div>
+            </div>
+            <!-- /.box-body -->
+            <!-- CARRERAS ASIGNADAS -->
+                      <div class ="col-md-6">
+            <div class="box-body">
+                <!-- TABLA DE FACULTADES ---->
+                <table class="table table-bordered">
+                   <thead>
+                <tr>
+                  <th>Carrera Nombre</th>
+                    {%if usuario.is_staff%}
+                    <th>Desasignar</th>
+                    {% endif%}
+                </tr>
+                </thead>
+                <tbody>
+                {% if carre %}
+                {% for carrera in carre %}
+                <tr>
+                    <td>{{carrera.carrera_id__nombre}}</td>
+                    {%if usuario.is_staff%}
+                    <td><a title="Eliminar" class="fa fa-fw fa-remove" href="/el_carrera/{{carrera.id}}"></a>
+                    {% endif %}
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay carreras registrados</td></tr>
+                {% endfor %}
+                {% endif %}
+
+                </tbody>
+
+              </table>
+
+
+            </div>
+            </div>
+
+
+                      <!-- USUARIOS ASIGNADOS O INVITADOS -->
+
+                                          <div class ="col-md-6">
+            <div class="box-body">
+                <!-- TABLA DE FACULTADES ---->
+                <table class="table table-bordered">
+                   <thead>
+                <tr>
+                  <th>Usuarios Invitados</th>
+                    {%if usuario.is_staff%}
+                    <th>Desasignar</th>
+                    {% endif%}
+                </tr>
+                </thead>
+                <tbody>
+                {% if usuarios %}
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{usuario.usuario_id__first_name}}</td>
+                    {%if usuario.is_staff%}
+                    <td><a title="Eliminar" class="fa fa-fw fa-remove" href="/el_user/{{usuario.id}}"></a>
+                    {% endif %}
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay Usuarios registrados</td></tr>
+                {% endfor %}
+                {% endif %}
+
+                </tbody>
+
+              </table>
+
+
+            </div>
+            </div>
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+      <!-- /.row -->
+                  </div>
+              <!-- /.tab-pane -->
+
+              <!-- /.tab-pane -->
+ <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+
+{% endblock content %}
+
+{% block js %}
+<
+{% endblock %}

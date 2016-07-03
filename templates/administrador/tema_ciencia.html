@@ -1,0 +1,83 @@
+{% extends 'administrador/administrador.html' %}
+
+{% block title %}
+Invitacion Tema-Ciencia
+<h1>
+
+        <small> {{usuario.first_name}}</small>
+      </h1>
+      <ol class="breadcrumb">
+         <li><a href="../profile"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li  href="../profile" class="active">Invitacion Ciencia</li>
+      </ol>
+{% endblock title %}
+
+{% block content %}
+
+
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Invitacion Ciencia</a></li>
+
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                  <div class="row">
+                     <div class="col-xs-12">
+                  <div class="box">
+
+
+
+            <div class="box-header">
+              <h3 class="box-title">Invita a las ciencias que desees:</h3>
+            </div>
+            <!-- /.box-header -->
+
+                 <div class="tab-pane" id="settings">
+                <form class="form-horizontal" method="POST">
+                    {%csrf_token %}
+                    <table class="table table-striped">
+                        {{formulario.as_table}}
+                    </table>
+
+
+                  <div>
+                  <input type="submit" class="btn btn-success" value="Invitar" />
+                      <a href="/profile" class="btn btn-primary"><b>Regresar</b></a>
+                  </div>
+                    {% if message %}
+                <div class='alert alert-info'>
+                {{ message }}
+                </div>
+                 {% endif %}
+                </form>
+
+              </div>
+      <!-- /.row -->
+                  </div>
+              <!-- /.tab-pane -->
+
+
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+
+{% endblock content %}
+
+{% block js %}
+<
+{% endblock %}
